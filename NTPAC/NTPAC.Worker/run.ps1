@@ -1,0 +1,1 @@
+﻿dotnet .\NTPAC.Worker.dll

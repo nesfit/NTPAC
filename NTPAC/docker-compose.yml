@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  ntpac.worker:
+    image: ntpac.worker
+    container_name: ntpac.worker
+    build:
+      context: .
+      dockerfile: NTPAC.Worker/Dockerfile
+
+  ntpac.loadbalancercli:
+    image: ntpac.loadbalancercli
+    container_name: ntpac.loadbalancer
+    build:
+      context: .
+      dockerfile: NTPAC.LoadBalancerCli/Dockerfile
+

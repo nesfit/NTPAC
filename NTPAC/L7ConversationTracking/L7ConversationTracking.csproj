@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>NTPAC.L7ConversationTracking</RootNamespace>
+    <AssemblyName>NTPAC.L7ConversationTrackingaa</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libs\sharppcap\Libs\packetnet\PacketDotNet.Interface\PacketDotNet.Interface.csproj">
+      <Project>{0E32418F-E388-4BC4-9E5B-D3068AF3EA4D}</Project>
+      <Name>PacketDotNet.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj">
+      <Project>{E2D0ABFD-362D-4E08-81E7-8710EFAE09F1}</Project>
+      <Name>NTPAC.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
