@@ -1,70 +1,90 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
-using NTPAC.Common.Models;
-using NTPAC.Reassembling.Enums;
-using NTPAC.Reassembling.Models;
-using PacketDotNet.IP;
+using NTPAC.ConversationTracking.Interfaces.Enums;
+using NTPAC.ConversationTracking.Models;
+using PacketDotNet;
 
 namespace NTPAC.Reassembling.UDP
 {
-    public class UdpConversationTracker : L7ConversationTrackerBase
+  public class UdpConversationTracker : L7ConversationTrackerBase
+  {
+    private static readonly Int64 UDPSessionTimeoutTicks = SessionTimeoutTicks;
+
+    private L7Flow _downFlow;
+    private L7Flow _upFlow;
+
+    public UdpConversationTracker(IPEndPoint sourceEndPoint, IPEndPoint destinationEndPoint) : base(
+      sourceEndPoint, destinationEndPoint)
     {
-        private static readonly TimeSpan UDPSessionAliveTimeout = TimeSpan.FromMinutes(10);
-
-        private L7Flow _upFlow;
-        private L7Flow _downFlow;
-
-        public UdpConversationTracker(IPEndPoint sourceEndPoint, IPEndPoint destinationEndPoint) : base(sourceEndPoint, destinationEndPoint)
-        {
-            this.ResetFlows();
-        }
-
-        public override IPProtocolType ProtocolType() => IPProtocolType.UDP;
-        
-        public override L7Conversation ProcessFrame(Frame frame)
-        {
-            var frameDirection = this.GetFrameFlowDirection(frame);
-            var flow = this.GetOrCreateFlow(frameDirection);
-            L7Conversation newL7Conversation = null;
-            if (flow.LastSeen.HasValue && (frame.TimestampTicks - flow.LastSeen.Value) > UDPSessionAliveTimeout.Ticks)
-            {
-                newL7Conversation = this.CloseCurrentSession();
-            }
-            flow.AddPdu(new L7PDU(frame, frameDirection));
-
-            return newL7Conversation;
-        }
-        
-        public override L7Conversation CloseCurrentSession()
-        {
-            L7Conversation newL7Conversation = null;
-            if (this._upFlow.Any() || this._downFlow.Any())
-            {
-                newL7Conversation = this.CreateL7Conversation(this._upFlow, this._downFlow);
-                this.ResetFlows();
-            }
-            return newL7Conversation;
-        }
-
-        private L7Flow GetOrCreateFlow(FlowDirection frameDirection)
-        {
-            switch (frameDirection)
-            {
-                case FlowDirection.Up:
-                    return GetOrCreateFlow(ref this._upFlow);
-                case FlowDirection.Down:
-                    return GetOrCreateFlow(ref this._downFlow);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(frameDirection), frameDirection, null);
-            }
-        }
-
-        private static L7Flow GetOrCreateFlow(ref L7Flow flow) => flow ?? (flow = new L7Flow());
-       
-        private void ResetFlows()
-        {
-            this._upFlow = null;
-            this._downFlow = null;
-        }
+      this.ResetFlows();
     }
+
+    public override IPProtocolType ProtocolType => IPProtocolType.UDP;
+
+    public override IEnumerable<L7Conversation> Complete()
+    {
+      var newL7Conversation = this.CloseConversation();
+      return newL7Conversation != null ? new List<L7Conversation> {newL7Conversation} : null;
+    }
+
+    public override L7Conversation ProcessFrame(Frame frame)
+    {
+      L7Conversation newL7Conversation = null;
+      var            flowsLastSeen     = this.FlowsLastSeen();
+      if (flowsLastSeen.HasValue && frame.TimestampTicks - flowsLastSeen.Value > UDPSessionTimeoutTicks)
+      {
+        newL7Conversation = this.CloseConversation();
+      }
+
+      var frameDirection = this.GetFlowDirectionForFrame(frame);
+      var flow           = this.GetOrCreateFlow(frameDirection);
+      flow.AddPdu(new L7Pdu(frame, frameDirection));
+      return newL7Conversation;
+    }
+
+    private L7Conversation CloseConversation()
+    {
+      L7Conversation newL7Conversation = null;
+      if (this._upFlow != null || this._downFlow != null)
+      {
+        newL7Conversation = this.CreateL7Conversation(this._upFlow, this._downFlow);
+        this.ResetFlows();
+      }
+
+      return newL7Conversation;
+    }
+
+    private Int64? FlowsLastSeen()
+    {
+      var lastSeen = Math.Max(this._upFlow?.LastSeenTicks ?? 0, this._downFlow?.LastSeenTicks ?? 0);
+      if (lastSeen == 0)
+      {
+        return null;
+      }
+
+      return lastSeen;
+    }
+
+    private L7Flow GetOrCreateFlow(FlowDirection frameDirection)
+    {
+      switch (frameDirection)
+      {
+        case FlowDirection.Up:
+          return GetOrCreateFlow(ref this._upFlow);
+        case FlowDirection.Down:
+          return GetOrCreateFlow(ref this._downFlow);
+        default:
+          throw new ArgumentOutOfRangeException(nameof(frameDirection), frameDirection, null);
+      }
+    }
+
+    private static L7Flow GetOrCreateFlow(ref L7Flow flow) => flow ?? (flow = new L7Flow());
+
+    private void ResetFlows()
+    {
+      this._upFlow   = null;
+      this._downFlow = null;
+    }
+  }
 }

@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>NTPAC.Persistence.DTO</AssemblyName>
+    <RootNamespace>NTPAC.Persistence.DTO</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+  </ItemGroup>
+</Project>

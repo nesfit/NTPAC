@@ -1,24 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Libs\sharppcap\Libs\packetnet\PacketDotNet\PacketDotNet.csproj" />
-    <ProjectReference Include="..\Libs\sharppcap\Libs\packetnet\PacketDotNet.Interface\PacketDotNet.Interface.csproj" />
-    <ProjectReference Include="..\Libs\sharppcap\SharpPcap\SharpPcap.csproj" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Akka.Cluster.Tools" Version="1.3.11" />
+    <PackageReference Include="Akka.Serialization.Hyperion" Version="1.3.11-beta" />
     <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
     <PackageReference Include="Akka.Serialization.MessagePack" Version="1.1.0" />
-    <PackageReference Include="Akka.Streams" Version="1.3.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NTPAC.Actors\NTPAC.Actors.csproj" />
     <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
-    <ProjectReference Include="..\NTPAC.Messages\NTPAC.Messages.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Actors\NTPAC.ConversationTracking.Actors.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking\NTPAC.ConversationTracking.csproj" />
+    <ProjectReference Include="..\NTPAC.LoadBalancer.Actors\NTPAC.LoadBalancer.Actors.csproj" />
+    <ProjectReference Include="..\NTPAC.LoadBalancer.Messages\NTPAC.LoadBalancer.Messages.csproj" />
+    <ProjectReference Include="..\NTPAC.Messages\NTPAC.ConversationTracking.Messages.csproj" />
     <ProjectReference Include="..\NTPAC.PcapLoader\NTPAC.PcapLoader.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Akka\" />
+    <None Remove="loadBalancer.hocon" />
+    <Content Include="loadBalancer.hocon">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RawPacketParser" />
   </ItemGroup>
 </Project>

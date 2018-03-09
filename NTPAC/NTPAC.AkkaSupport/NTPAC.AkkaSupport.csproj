@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>NTPAC.AkkaSupport</AssemblyName>
+    <RootNamespace>NTPAC.AkkaSupport</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTPAC.AkkaSupport.Interfaces\NTPAC.AkkaSupport.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.Messages\NTPAC.ConversationTracking.Messages.csproj" />
+    <ProjectReference Include="..\NTPAC.PcapLoader\NTPAC.PcapLoader.csproj" />
+  </ItemGroup>
+</Project>

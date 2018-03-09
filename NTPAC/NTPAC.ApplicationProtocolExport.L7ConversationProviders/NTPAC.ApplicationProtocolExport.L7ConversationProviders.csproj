@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.Interfaces\NTPAC.ApplicationProtocolExport.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.Interfaces\NTPAC.Persistence.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.Reassembling\NTPAC.Reassembling.csproj" />
+    </ItemGroup>
+
+</Project>

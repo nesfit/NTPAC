@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PacketDotNet" Version="0.19.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Models\NTPAC.ConversationTracking.Models.csproj" />
+    <ProjectReference Include="..\NTPAC.Messages\NTPAC.ConversationTracking.Messages.csproj" />
+  </ItemGroup>
+</Project>

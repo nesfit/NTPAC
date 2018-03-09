@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="PacketDotNet" Version="0.19.3" />
+      <PackageReference Include="SharpPcap" Version="4.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Models\NTPAC.ConversationTracking.Models.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.Interfaces\NTPAC.Persistence.Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>

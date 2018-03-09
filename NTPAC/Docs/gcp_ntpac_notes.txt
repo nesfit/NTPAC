@@ -1,0 +1,34 @@
+# Create and setup Reassembler instances
+REASSEMBLER_MACHINES_TYPE="n1-highcpu-8"
+SWARM_JOIN_TOKEN="SWMTKN-1-2nrjgx7xao4v6nunjobdydn2yqgh631zlbol42xn23fvrdhekm-da0ga0dsnsibab7h107l8as90"
+SWARM_JOIN_ADDR="10.128.0.35:2377"
+for MACHINE in $(seq -f "r%02g" 1 8)
+do
+	(echo "Creating Reassembler instance $MACHINE ($REASSEMBLER_MACHINES_TYPE); $(date)"; \
+	docker-machine create "$MACHINE" -d google --google-machine-type "$REASSEMBLER_MACHINES_TYPE" --google-tags ntpacswarm --google-project storied-channel-138110 && \
+	eval $(docker-machine env "$MACHINE") && \
+	docker swarm join --token "$SWARM_JOIN_TOKEN" "$SWARM_JOIN_ADDR" && \
+	eval $(docker-machine env swarm-mngr) && \
+	docker node update --label-add reassembler=true "$MACHINE") 2>&1 >> "$MACHINE.txt" &
+done
+wait
+
+
+# Create and setup Loadbalancer instances
+LOADBALANCER_MACHINES_TYPE="n1-highcpu-8"
+SWARM_JOIN_TOKEN="SWMTKN-1-2nrjgx7xao4v6nunjobdydn2yqgh631zlbol42xn23fvrdhekm-da0ga0dsnsibab7h107l8as90"
+SWARM_JOIN_ADDR="10.128.0.35:2377"
+TEST_PCAP_BUCKET_URL="gs://ntpac-sharedbucket/m57.pcap"
+for MACHINE in $(seq -f "lb%02g" 1 4)
+do
+	(echo "Creating Loadbalancer instance $MACHINE ($LOADBALANCER_MACHINES_TYPE); $(date)"; \
+	docker-machine create "$MACHINE" -d google --google-machine-type "$LOADBALANCER_MACHINES_TYPE" --google-tags ntpacswarm --google-project storied-channel-138110 && \
+	eval $(docker-machine env "$MACHINE") && \
+	docker swarm join --token "$SWARM_JOIN_TOKEN" "$SWARM_JOIN_ADDR" && \
+	docker node update --label-add loadbalancer=true "$MACHINE" && \
+	gcloud compute ssh "$MACHINE" --command "mkdir -p ~/pcap && gsutil cp $TEST_PCAP_BUCKET_URL ~/pcap/") 2>&1 >> "$MACHINE.txt" &
+done
+wait
+
+
+for MACHINE in $(seq -f "lb%02g" 1 4); do eval $(docker-machine env "$MACHINE"); for C in $(docker ps -q); do docker stop $C; done; done

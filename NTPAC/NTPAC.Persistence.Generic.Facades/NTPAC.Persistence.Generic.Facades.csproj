@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="TinyMapper" Version="3.0.2-beta" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.Persistence.Entities\NTPAC.Persistence.Entities.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.Interfaces\NTPAC.Persistence.Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>

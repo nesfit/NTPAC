@@ -1,0 +1,15 @@
+Swagger setup:
+	0. Disable AMD loader (if "Module not found" errors)
+		https://github.com/swagger-api/swagger-codegen/tree/master/samples/client/petstore/javascript-es6#webpack-configuration
+		node_modules/react-scripts/config/webpack.config.js
+			module: {
+				strictExportPresence: true,
+				rules: [
+					// Disable require.ensure as it's not a standard language feature.
+					{ parser: { requireEnsure: false, amd: false} },
+					...
+
+	1. Copy JSON API definition from http://localhost:5000/swagger/v1/swagger.json to https://editor.swagger.io (convert to YAML)
+	2. Fix enum errors
+	3. Generate Client / Javascript and extract it to local_node_modules/ntpac_api/
+		remove ERRORUNKNOWN references if any

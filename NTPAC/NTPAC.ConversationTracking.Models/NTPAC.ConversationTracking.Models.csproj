@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <LangVersion>7.2</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+    </ItemGroup>
+    
+
+</Project>

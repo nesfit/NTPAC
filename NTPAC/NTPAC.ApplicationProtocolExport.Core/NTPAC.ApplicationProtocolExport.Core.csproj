@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.Interfaces\NTPAC.ApplicationProtocolExport.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.Kaitai\NTPAC.ApplicationProtocolExport.Kaitai.csproj" />
+      <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Models\NTPAC.ConversationTracking.Models.csproj" />
+      <ProjectReference Include="..\NTPAC.LoadBalancer.Interfaces\NTPAC.LoadBalancer.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.Reassembling\NTPAC.Reassembling.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="ApplicationProtocolClassifiers\PortBasedClassifier\Resources\service-names-port-numbers.csv ">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+</Project>

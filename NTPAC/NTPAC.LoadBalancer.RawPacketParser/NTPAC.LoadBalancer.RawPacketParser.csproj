@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.Messages\NTPAC.ConversationTracking.Messages.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="PacketDotNet" Version="0.19.3" />
+    </ItemGroup>
+
+</Project>

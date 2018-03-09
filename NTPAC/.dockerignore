@@ -7,6 +7,12 @@
 docker-compose.yml
 docker-compose.*.yml
 */bin
+*/*/bin
+*/*/*/bin
 */obj
+*/*/obj
+*/*/*/obj
 !obj/Docker/publish/*
 !obj/Docker/empty/
+
+TestingData/

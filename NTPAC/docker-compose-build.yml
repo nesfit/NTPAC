@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  lighthouse:
+    image: docker.nesad.fit.vutbr.cz/lighthouse:latest
+    build:
+      dockerfile: ./Lighthouse.NetCoreApp/Dockerfile
+      context: .
+      args:
+        - nuget_user=${NUGET_USER}
+        - nuget_pass=${NUGET_PASS}
+
+  reassembler:
+    image: docker.nesad.fit.vutbr.cz/reassembler:latest
+    build:
+      dockerfile: ./NTPAC.ReassemblerCli/Dockerfile
+      context: .
+      args:
+        - nuget_user=${NUGET_USER}
+        - nuget_pass=${NUGET_PASS}
+
+  loadbalancer:
+    image: docker.nesad.fit.vutbr.cz/loadbalancer:latest
+    build:
+      dockerfile: ./NTPAC.LoadBalancerCli/Dockerfile
+      context: .
+      args:
+        - nuget_user=${NUGET_USER}
+        - nuget_pass=${NUGET_PASS}
+          
+  distrstats:
+    image: docker.nesad.fit.vutbr.cz/distrstats:latest
+    build:
+      dockerfile: ./NTPAC.PcapDistributionStatsCli/Dockerfile
+      context: .
+      args:
+        - nuget_user=${NUGET_USER}
+        - nuget_pass=${NUGET_PASS}
+
+  pcaploaderbenchmark:
+    image: docker.nesad.fit.vutbr.cz/pcaploaderbenchmark:latest
+    build:
+      dockerfile: ./NTPAC.PcapLoader.Benchmark/Dockerfile
+      context: .
+      args:
+        - nuget_user=${NUGET_USER}
+        - nuget_pass=${NUGET_PASS}  
+
+  cassandra:
+    image: docker.nesad.fit.vutbr.cz/cassandra:latest
+    build: ./Cassandra
+
+  cassandrainitializer:
+    image: docker.nesad.fit.vutbr.cz/cassandrainitializer:latest
+    build: ./CassandraInitializer
+

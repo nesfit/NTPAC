@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NTPAC.AkkaSupport\NTPAC.AkkaSupport.csproj" />
+    <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking\NTPAC.ConversationTracking.csproj" />
+    <ProjectReference Include="..\NTPAC.LoadBalancer.Interfaces\NTPAC.LoadBalancer.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.LoadBalancer.Messages\NTPAC.LoadBalancer.Messages.csproj" />
+    <ProjectReference Include="..\NTPAC.Messages\NTPAC.ConversationTracking.Messages.csproj" />
+    <ProjectReference Include="..\NTPAC.Persistence.Cassandra.Facades\NTPAC.Persistence.Cassandra.Facades.csproj" />
+    <ProjectReference Include="..\NTPAC.Persistence.Interfaces\NTPAC.Persistence.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.Reassembling\NTPAC.Reassembling.csproj" />
+    <ProjectReference Include="..\Snoopers\SnooperDNS\SnooperDNS.csproj" />
+    <ProjectReference Include="..\Snoopers\SnooperHTTP\SnooperHTTP.csproj" />
+  </ItemGroup>
+
+</Project>

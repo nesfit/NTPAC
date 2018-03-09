@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>NTPAC.Messages</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTPAC.AkkaSupport.Interfaces\NTPAC.AkkaSupport.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Interfaces\NTPAC.ConversationTracking.Interfaces.csproj" />
+    <ProjectReference Include="..\NTPAC.ConversationTracking.Models\NTPAC.ConversationTracking.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sharding\" />
+  </ItemGroup>
+</Project>

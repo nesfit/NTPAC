@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <LangVersion>7.2</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.Core\NTPAC.ApplicationProtocolExport.Core.csproj" />
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.Interfaces\NTPAC.ApplicationProtocolExport.Interfaces.csproj" />
+      <ProjectReference Include="..\NTPAC.ApplicationProtocolExport.L7ConversationProviders\NTPAC.ApplicationProtocolExport.L7ConversationProviders.csproj" />
+      <ProjectReference Include="..\NTPAC.Common\NTPAC.Common.csproj" />
+      <ProjectReference Include="..\NTPAC.ConversationTracking.Models\NTPAC.ConversationTracking.Models.csproj" />
+      <ProjectReference Include="..\NTPAC.PcapLoader\NTPAC.PcapLoader.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.Cassandra.Facades\NTPAC.Persistence.Cassandra.Facades.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.DevNull.Facades\NTPAC.Persistence.DevNull.Facades.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.InMemory.Facades\NTPAC.Persistence.InMemory.Facades.csproj" />
+      <ProjectReference Include="..\NTPAC.Persistence.Generic.Facades\NTPAC.Persistence.Generic.Facades.csproj" />
+      <ProjectReference Include="..\NTPAC.Reassembling\NTPAC.Reassembling.csproj" />
+      <ProjectReference Include="..\Snoopers\SnooperHTTP\SnooperHTTP.csproj" />
+      <ProjectReference Include="..\Snoopers\SnooperDNS\SnooperDNS.csproj" />
+      <ProjectReference Include="..\Snoopers\SnooperTLS\SnooperTLS.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.3.0" />
+      <PackageReference Include="DynamicExpresso.Core" Version="2.2.0" />
+    </ItemGroup>
+
+</Project>

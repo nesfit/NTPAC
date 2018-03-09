@@ -1,9 +1,3 @@
-[submodule "NTPAC/Libs/packetnet"]
-	path = NTPAC/Libs/packetnet
-	url = https://github.com/nesfit/packetnet.git
-[submodule "NTPAC/Libs/sharppcap"]
-	path = NTPAC/Libs/sharppcap
-	url = https://github.com/nesfit/sharppcap.git
-[submodule "NTPAC/Libs/UnitOfWork"]
-	path = NTPAC/Libs/UnitOfWork
-	url = https://github.com/nesfit/UnitOfWork.git
+[submodule "NTPAC/TestingData"]
+	path = NTPAC/TestingData
+	url = https://nessc.fit.vutbr.cz/tfs/Marta/NTPAC/_git/TestingData

@@ -250,3 +250,9 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/NTPAC/.tools
+#/NTPAC/NTPAC.PcapLoader.Benchmark/BenchmarkDotNet.Artifacts/results
+#/NTPAC/NTPAC.LoadBalancer.Benchmark/BenchmarkDotNet.Artifacts/results
+*results*
+
+*.env

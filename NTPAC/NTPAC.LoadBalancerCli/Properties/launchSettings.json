@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NTPAC.LoadBalancerCli": {
+      "commandName": "Project",
+      "commandLineArgs": "--offline D:\\pcap\\m57_separated\\net-2009-11-30-16_54.pcap"
+    }
+  }
+}
