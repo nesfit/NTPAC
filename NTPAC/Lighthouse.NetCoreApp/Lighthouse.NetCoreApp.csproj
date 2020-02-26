@@ -21,7 +21,7 @@
     <PackageReference Include="Akka.Serialization.MessagePack" Version="1.1.0" />
     <PackageReference Include="CommandLineParser" Version="2.3.0" />
     <PackageReference Include="DotNetty.Handlers" Version="0.6.0" />
-    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <PackageReference Include="MessagePack" Version="1.9.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.1.1" />
